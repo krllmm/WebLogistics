@@ -11,7 +11,7 @@ export default function Layout() {
           <Sidebar />
         </Box>
 
-        <Box sx={{ flexGrow: 1, p: 3 }}>
+        <Box sx={{ flexGrow: 1, padding: "12px" }}>
           <Outlet />
         </Box>
 

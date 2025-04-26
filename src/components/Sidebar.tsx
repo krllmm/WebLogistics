@@ -4,21 +4,23 @@ import MenuItem from "./MenuItem";
 export default function Sidebar() {
   return (
     <>
-      {/* <div>Logo</div> */}
       <Stack 
         spacing={2} 
         sx={{ 
-          backgroundColor: "red",
-          height: "100%"
+          backgroundColor: "#f0f0f0",
+          height: "100%",
+          paddingRight: 2
         }}
         >
-        <MenuItem path="" title="Home" />
+          {/* <div>Logo</div> */}
+        <MenuItem path="" title="Главная" />
 
-        <MenuItem path="logists" title="Logists" />
+        <MenuItem path="logists" title="Логисты" />
 
-        <MenuItem path="deliveries" title="Deliveries" />
+        <MenuItem path="deliveries" title="Перевозки" />
 
-        <MenuItem path="driver" title="Driver" />
+        <MenuItem path="driver" title="Водители" />
+
       </Stack>
     </>
   )
