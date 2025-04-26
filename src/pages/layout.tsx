@@ -1,26 +1,21 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Sidebar from "../components/Sidebar"
+import { Box } from "@mui/material";
 
-export default function Layout(){
-    return(
-        <>
-        <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/logists">logists</Link>
-          </li>
-          <li>
-            <Link to="/deliveries">deliveries</Link>
-          </li>
-          <li>
-            <Link to="/driver">drivers</Link>
-          </li>
-        </ul>
-      </nav>
+export default function Layout() {
+  return (
+    <>
+      <Box sx={{ display: 'flex', minHeight: '100vh' }}>
 
-      <Outlet />
-        </>
-    )
+        <Box sx={{ overflow: 'auto' }}>
+          <Sidebar />
+        </Box>
+
+        <Box sx={{ flexGrow: 1, p: 3 }}>
+          <Outlet />
+        </Box>
+
+      </Box>
+    </>
+  )
 }
