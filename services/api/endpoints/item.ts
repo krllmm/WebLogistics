@@ -11,4 +11,7 @@ export const itemService = {
   async getDeliveries() {
     return apiClient.get('/getAllDeliveries');
   },
+  async getAllDrivers() {
+    return apiClient.get('/getAllDrivers');
+  }
 };
