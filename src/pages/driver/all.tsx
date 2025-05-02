@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import Box from '@mui/material/Box';
-import { itemService } from "../../services/api/endpoints/item";
-import Header from "../components/Header";
-import DriverCard from "../components/DriverCArd";
+import { itemService } from "../../../services/api/endpoints/item";
+import Header from "../../components/Header";
+import DriverCard from "../../components/DriverCard";
+import { Button } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 export interface DriverDeliveries {
   from: string,
@@ -54,15 +56,36 @@ export default function Driver() {
   return (
     <Box sx={{
       padding: 2,
+      display: "flex",
+      flexDirection: "column",
     }}>
       {apiError && <div>{apiError}</div>}
 
       <Header title="Водители" />
 
       {drivers.map((driver, index) => (
-        <DriverCard key={index} driver={driver}/>
+        <DriverCard key={index} driver={driver} />
       ))}
-      
+
+      <NavLink to="/drivers/add" style={{
+        alignSelf: "flex-end"
+      }}>
+        <Button sx={{
+          backgroundColor: "#8EBB8E",
+          marginTop: 2,
+          color: "#000",
+          borderRadius: "12px",
+          py: 1,
+          px: 3,
+          textDecoration: "none",
+          "&:hover": {
+            backgroundColor: "#1C771C",
+          }
+        }}>
+          Добавить водителя
+        </Button>
+      </NavLink>
+
     </Box>
   )
 }
