@@ -3,8 +3,9 @@ import Box from '@mui/material/Box';
 import { itemService } from "../../../services/api/endpoints/item";
 import Header from "../../components/Header";
 import DriverCard from "../../components/DriverCard";
-import { Button } from "@mui/material";
+import { Button, Skeleton } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import ErrorMessage from "../../components/ErrorMessage";
 
 export interface DriverDeliveries {
   from: string,
@@ -34,19 +35,19 @@ export default function Driver() {
     setApiError("")
 
     await itemService.getAllDrivers()
-      .then(res => {
+      .then(async res => {
 
         if (!res) {
-          throw new Error("Ошибка получения данных о водителях")
+          throw new Error("Ошибка")
         } else {
           console.log(res)
           setDrivers(res)
         }
       })
-      .catch((err: Error) => {
-        setApiError(err.message || "Произошла неизвестная ошибка");
+      .catch(() => {
+        setApiError("Не удалось получить список водителей, потому что сервер на данный момент недоступен");
       })
-      .finally(() => setLoading(false))
+      .finally(() => setTimeout(() => setLoading(false), 1000))
   }
 
   useEffect(() => {
@@ -59,33 +60,52 @@ export default function Driver() {
       display: "flex",
       flexDirection: "column",
     }}>
-      {apiError && <div>{apiError}</div>}
-
       <Header title="Водители" />
+      {
+        (apiError != "") && !loading ?
+          <>
+            <ErrorMessage apiError={apiError} getData={getData} />
+          </>
+          : ""
+      }
+      {
+        loading
+          ?
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Skeleton variant="rectangular" animation="wave" height={150} sx={{ borderRadius: "30px" }} />
+            <Skeleton variant="rectangular" animation="wave" height={150} sx={{ borderRadius: "30px" }} />
+          </Box>
+          :
+          <Box sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}>
 
-      {drivers.map((driver, index) => (
-        <DriverCard key={index} driver={driver} />
-      ))}
+            {drivers.map((driver, index) => (
+              <DriverCard key={index} driver={driver} />
+            ))}
 
-      <NavLink to="/drivers/add" style={{
-        alignSelf: "flex-end"
-      }}>
-        <Button sx={{
-          backgroundColor: "#8EBB8E",
-          marginTop: 2,
-          color: "#000",
-          borderRadius: "12px",
-          py: 1,
-          px: 3,
-          textDecoration: "none",
-          "&:hover": {
-            backgroundColor: "#1C771C",
-          }
-        }}>
-          Добавить водителя
-        </Button>
-      </NavLink>
+            <NavLink to="/drivers/add" style={{
+              alignSelf: "flex-end"
+            }}>
+              <Button sx={{
+                backgroundColor: "#8EBB8E",
+                marginTop: 2,
+                color: "#000",
+                borderRadius: "12px",
+                py: 1,
+                px: 3,
+                textDecoration: "none",
+                "&:hover": {
+                  backgroundColor: "#1C771C",
+                }
+              }}>
+                Добавить водителя
+              </Button>
+            </NavLink>
 
+          </Box>
+      }
     </Box>
   )
 }
