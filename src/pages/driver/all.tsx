@@ -21,8 +21,10 @@ export interface Driver {
   second_name: string,
   experince: number,
   age: number,
-  category: string,
+  category: string[],
   delivery: DriverDeliveries[],
+  login: string,
+  // password: string,
 }
 
 export default function Driver() {
@@ -39,6 +41,7 @@ export default function Driver() {
 
         if (!res) {
           throw new Error("Ошибка")
+          console.log(res)
         } else {
           console.log(res)
           setDrivers(res)

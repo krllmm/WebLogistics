@@ -17,7 +17,9 @@ export default function DriverCard({ driver }: DriverProps) {
             <Typography variant="h6">Фамилия: {driver.second_name}</Typography>
             <Typography variant="h6">Опыт работы: {driver.experince}</Typography>
             <Typography variant="h6">Возраст: {driver.age}</Typography>
-            <Typography variant="h6">Водительская категория: {driver.category}</Typography>
+            <Typography variant="h6">Водительская категория: {driver.category.join(", ")}</Typography>
+            <Typography variant="h6">{driver.login}</Typography>
+                {/* <Typography variant="h6">{driver.password}</Typography> */}
         </Box>
         </>
     )

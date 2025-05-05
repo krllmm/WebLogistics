@@ -1,9 +1,5 @@
 import { apiClient } from '../client';
 
-type productProps = {
-    id: string
-}
-
 type newDriverProps = {
   firstName: string
   secondName: string
@@ -13,6 +9,16 @@ type newDriverProps = {
   category: string[],
   login: string,
   password: string,
+}
+
+type newDeliveryProps = {
+  from: string,
+  from_address: string,
+  to: string, 
+  to_address: string,
+  product_id: number,
+  amount: number,
+  datetime: string
 }
 
 export const itemService = {
@@ -27,5 +33,8 @@ export const itemService = {
   },
   async addDriver(newDriver: newDriverProps) {
     return apiClient.post("/addDriver", newDriver)
+  },
+  async addDelivery(newDelivery: newDeliveryProps) {
+    return apiClient.post("/addDelivery", newDelivery)
   }
 };

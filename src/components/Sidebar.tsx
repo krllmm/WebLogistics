@@ -17,7 +17,7 @@ export default function Sidebar() {
 
         <MenuItem path="logists" title="Логисты" />
 
-        <MenuItem path="deliveries" title="Перевозки" />
+        <MenuItem path="deliveries/all" title="Перевозки" />
 
         <MenuItem path="drivers/all" title="Водители" />
 
