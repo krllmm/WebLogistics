@@ -18,7 +18,8 @@ type newDeliveryProps = {
   to_address: string,
   product_id: number,
   amount: number,
-  datetime: string
+  datetime: string,
+  id: string,
 }
 
 export const itemService = {
@@ -36,5 +37,8 @@ export const itemService = {
   },
   async addDelivery(newDelivery: newDeliveryProps) {
     return apiClient.post("/addDelivery", newDelivery)
+  },
+  async getAvailableDrivers(){
+    return apiClient.get("/getAvailableDrivers")
   }
 };

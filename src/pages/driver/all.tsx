@@ -82,31 +82,36 @@ export default function Driver() {
           <Box sx={{
             display: "flex",
             flexDirection: "column",
+            gap: 2,
           }}>
 
             {drivers.map((driver, index) => (
               <DriverCard key={index} driver={driver} />
             ))}
 
-            <NavLink to="/drivers/add" style={{
-              alignSelf: "flex-end"
-            }}>
-              <Button sx={{
-                backgroundColor: "#8EBB8E",
-                marginTop: 2,
-                color: "#000",
-                borderRadius: "12px",
-                py: 1,
-                px: 3,
-                textDecoration: "none",
-                "&:hover": {
-                  backgroundColor: "#1C771C",
-                }
-              }}>
-                Добавить водителя
-              </Button>
-            </NavLink>
+            {
+              !apiError &&
 
+              <NavLink to="/drivers/add" style={{
+                alignSelf: "flex-end"
+              }}>
+
+                <Button sx={{
+                  backgroundColor: "#8EBB8E",
+                  marginTop: 2,
+                  color: "#000",
+                  borderRadius: "12px",
+                  py: 1,
+                  px: 3,
+                  textDecoration: "none",
+                  "&:hover": {
+                    backgroundColor: "#1C771C",
+                  }
+                }}>
+                  Добавить водителя
+                </Button>
+              </NavLink>
+            }
           </Box>
       }
     </Box>
