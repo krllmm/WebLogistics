@@ -13,7 +13,8 @@ export interface DriverDeliveries {
   to: string,
   to_address: string,
   product_id: number,
-  amount: number
+  amount: number,
+  date: string,
 }
 
 export interface Driver {
@@ -24,7 +25,6 @@ export interface Driver {
   category: string[],
   delivery: DriverDeliveries[],
   login: string,
-  // password: string,
 }
 
 export default function Driver() {
@@ -38,10 +38,9 @@ export default function Driver() {
 
     await itemService.getAllDrivers()
       .then(async res => {
-
         if (!res) {
-          throw new Error("Ошибка")
           console.log(res)
+          throw new Error("Ошибка")
         } else {
           console.log(res)
           setDrivers(res)
