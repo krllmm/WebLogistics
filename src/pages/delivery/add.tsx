@@ -30,19 +30,19 @@ export default function AddDelivery() {
     if (product == null) return;
     if (amount == null) return;
 
-    // itemService.addDelivery({
-    //   from: from,
-    //   from_address: fromAddress,
-    //   to: to,
-    //   to_address: toAddress,
-    //   product_id: product,
-    //   amount: amount,
-    //   datetime: datetime.toISOString(),
-    //   id: driver,
-    // })
-    //   .then(res => console.log(res))
-    //   .catch()
-    //   .finally()
+    itemService.addDelivery({
+      from: from,
+      from_address: fromAddress,
+      to: to,
+      to_address: toAddress,
+      product_id: product,
+      amount: amount,
+      datetime: datetime.toISOString(),
+      id: driver,
+    })
+      .then(res => console.log(res))
+      .catch()
+      .finally()
   }
 
   const handleChange = (event: SelectChangeEvent) => {
