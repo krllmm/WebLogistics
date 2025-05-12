@@ -40,5 +40,8 @@ export const itemService = {
   },
   async getAvailableDrivers(){
     return apiClient.get("/getAvailableDrivers")
+  },
+  async getDeliveryHistory(){
+    return apiClient.get("/getDeliveryHistory")
   }
 };
