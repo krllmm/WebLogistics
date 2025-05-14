@@ -19,7 +19,7 @@ export default function MenuIcon({ path, title, icon }: MenuItemProps) {
         style={({ isActive }) => ({
           color: isActive ? '#363636' : '#545e6f',
           background: isActive ? '#8EBB8E' : '#f0f0f0',
-          marginTop: 12,
+          marginTop: 6,
           // marginBottom: 12,
           marginRight: 12,
           padding: 12,
@@ -33,7 +33,7 @@ export default function MenuIcon({ path, title, icon }: MenuItemProps) {
           fontSize: 18,
           display: "flex",
           alignItems: "center",
-          gap: 12
+          gap: 12,
         })}>
         {icon} {title}
       </NavLink>
