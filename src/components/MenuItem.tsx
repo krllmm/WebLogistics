@@ -1,11 +1,13 @@
+import { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
 
 interface MenuItemProps {
   path: string
-  title: string
+  title: string,
+  icon: ReactElement,
 }
 
-export default function MenuIcon({ path, title }: MenuItemProps) {
+export default function MenuIcon({ path, title, icon }: MenuItemProps) {
   const location = {
     pathname: path
   }
@@ -29,8 +31,11 @@ export default function MenuIcon({ path, title }: MenuItemProps) {
           borderLeftColor: isActive ? "#1C771C" : "#f0f0f0",
           borderLeftStyle: "solid",
           fontSize: 18,
+          display: "flex",
+          alignItems: "center",
+          gap: 12
         })}>
-        {title}
+        {icon} {title}
       </NavLink>
     </>
   )
