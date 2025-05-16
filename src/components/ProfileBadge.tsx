@@ -18,10 +18,12 @@ const style = {
 interface Agent {
   login: string,
   super_rights: boolean,
+  first_name: string,
+  second_name: string,
 }
 
 export default function ProfileBadge() {
-  const [user, setUser] = useState<Agent>({"login": "none", "super_rights": false})
+  const [user, setUser] = useState<Agent>({"login": "none", "super_rights": false, "first_name": "none", "second_name": "none"})
   const [openModal, setOpenModal] = useState(false)
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
@@ -38,7 +40,12 @@ export default function ProfileBadge() {
 
   const checkAuth = async () => {
     const user = await JSON.parse(localStorage.getItem("user") || `{"login": "none", "super_rights": "false"}`)
-    setUser({"login": user["login"], "super_rights": user["super_rights"]})
+    setUser({ 
+      "login": user["login"], 
+      "super_rights": user["super_rights"],
+      "first_name": user["first_name"], 
+      "second_name": user["second_name"]
+    })
     console.log("login: ", user)
   }
 
@@ -51,7 +58,9 @@ export default function ProfileBadge() {
         localStorage.setItem("user", JSON.stringify(
           {
             "login": res.user["login"], 
-            "super_rights": res.user["super_rights"]
+            "super_rights": res.user["super_rights"],
+            "first_name": res.user["first_name"], 
+            "second_name": res.user["second_name"]
           }
         ))
       })
@@ -128,7 +137,7 @@ export default function ProfileBadge() {
               flex: 1,
             }}>
             <AccountCircleIcon fontSize="large"  sx={{ marginRight: 1 }} />
-            <Typography variant="h6">{user.login}</Typography>
+            <Typography variant="h6">{user.first_name}</Typography>
             <LogoutIcon 
               fontSize="large"
               onClick={() => handleLogout()} 

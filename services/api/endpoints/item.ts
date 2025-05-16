@@ -19,7 +19,12 @@ type newDeliveryProps = {
   product_id: number,
   amount: number,
   datetime: string,
-  id: string,
+  id: string,  
+}
+
+type newAssignInfoProps = {
+  driverId: string,
+  logistId: string
 }
 
 export const itemService = {
@@ -46,5 +51,11 @@ export const itemService = {
   },
   async getDeliveryHistory(){
     return apiClient.get("/getDeliveryHistory")
+  },
+  async getFreeDrivers(){
+    return apiClient.get("/getFreeDrivers")
+  },
+  async assignDriverToLogist(assignInfo: newAssignInfoProps) {
+    return apiClient.post("/assignDriverToLogist", assignInfo)
   }
 };

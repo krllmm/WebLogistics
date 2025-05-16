@@ -6,7 +6,11 @@ type CredentialsProps = {
 }
 
 type userDataProps = {
-    login: string
+  first_name: string,
+  second_name: string,
+  login: string,
+  super_rights: string,
+  password: string,
 }
 
 export const authService = {
@@ -15,10 +19,6 @@ export const authService = {
   },
 
   async registerLogist(userData: userDataProps) {
-    return apiClient.post('/registerLogist', userData);
-  },
-
-  async me(userData: userDataProps) {
-    return apiClient.get("/me", userData)
+    return apiClient.post('/addLogist', userData);
   }
 };
