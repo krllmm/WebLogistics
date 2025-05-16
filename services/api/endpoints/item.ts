@@ -24,13 +24,16 @@ type newDeliveryProps = {
 
 export const itemService = {
   async getProducts() {
-    return apiClient.get('/getProducts');
+    return apiClient.get('/getProducts')
   },
   async getDeliveries() {
-    return apiClient.get('/getAllDeliveries');
+    return apiClient.get('/getAllDeliveries')
   },
   async getAllDrivers() {
-    return apiClient.get('/getAllDrivers');
+    return apiClient.get('/getAllDrivers')
+  },
+  async getLogists() {
+    return apiClient.get("/getLogists")
   },
   async addDriver(newDriver: newDriverProps) {
     return apiClient.post("/addDriver", newDriver)
