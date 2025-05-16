@@ -23,7 +23,7 @@ type newDeliveryProps = {
 }
 
 export const itemService = {
-  async getProduct() {
+  async getProducts() {
     return apiClient.get('/getProducts');
   },
   async getDeliveries() {
