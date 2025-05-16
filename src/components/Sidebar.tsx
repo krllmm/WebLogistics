@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import MenuItem from "./MenuItem";
-import { QueryStats, ContactPage, LocalShipping, Badge } from '@mui/icons-material';
+import { QueryStats, ContactPage, LocalShipping, Badge, Chat, ListAlt, Settings } from '@mui/icons-material';
 import ProfileBadge from "./ProfileBadge";
 
 export default function Sidebar() {
@@ -17,7 +17,7 @@ export default function Sidebar() {
           gap: 2,
         }}
         >
-          {/* <div>Logo</div> */}
+          
         <MenuItem path="" title="Статистика" icon={<QueryStats />}/>
 
         <MenuItem path="logists" title="Логисты" icon={<ContactPage />}/>
@@ -25,6 +25,12 @@ export default function Sidebar() {
         <MenuItem path="deliveries/all" title="Перевозки" icon={<LocalShipping />}/>
 
         <MenuItem path="drivers/all" title="Водители" icon={<Badge />}/>
+
+        <MenuItem path="chat" title="Чат" icon={<Chat />} />
+
+        <MenuItem path="products" title="Товары" icon={<ListAlt />} />
+
+        <MenuItem path="settings" title="Настройки" icon={<Settings />} />
 
         <Box 
           sx={{ 

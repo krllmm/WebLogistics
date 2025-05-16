@@ -6,6 +6,9 @@ import Delivery from './pages/delivery/all';
 import AddDelivery from "./pages/delivery/add";
 import Home from './pages/home';
 import AddDriver from './pages/driver/add';
+import Product from './pages/product';
+import Chat from './pages/chat';
+import Settings from './pages/settings';
 
 function App() {
 
@@ -24,6 +27,9 @@ function App() {
               <Route path="all" element={<Drivers />} />
               <Route path="add" element={<AddDriver />} />
             </Route>
+            <Route path="products" element={<Product/>}/>
+            <Route path="chat" element={<Chat/>}/>
+            <Route path="settings" element={<Settings/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

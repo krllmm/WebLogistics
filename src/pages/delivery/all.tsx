@@ -18,7 +18,6 @@ export default function Delivery() {
 
     await itemService.getAllDrivers()
       .then(async res => {
-
         if (!res) {
           console.log(res)
           throw new Error("Ошибка")
@@ -51,8 +50,6 @@ export default function Delivery() {
           </>
           : ""
       }
-
-
       {
         loading
           ?
@@ -69,7 +66,7 @@ export default function Delivery() {
             {
               drivers.map((driver, index) => (
                 <Box key={index} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                  <Typography>{driver.first_name} {driver.second_name}</Typography>
+                  <Typography>Водитель: {driver.first_name} {driver.second_name}</Typography>
                   <Box
                     key={index}
                     sx={{
@@ -81,7 +78,7 @@ export default function Delivery() {
                   >
                     {
                       (driver.delivery).length === 0 ?
-                        <Typography>нет доставок</Typography>
+                        <Typography>Нет доставок</Typography>
                         :
                         driver.delivery.map((delivery, index) => (
                           <DeliveryCard delivery={delivery} key={index} />
@@ -115,8 +112,6 @@ export default function Delivery() {
             }
           </Box>
       }
-
-
     </Box>
   )
 }
