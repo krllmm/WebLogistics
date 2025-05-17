@@ -24,7 +24,7 @@ export default function Layout() {
     <>
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
 
-        <Box sx={{ overflow: 'auto' }}>
+        <Box sx={{ overflow: 'auto', minWidth: 200 }}>
           <Sidebar />
         </Box>
 
