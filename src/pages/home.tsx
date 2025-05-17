@@ -174,24 +174,40 @@ export default function Home() {
                 {apiError}
               </Box> :
 
-              <Box>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 
-                <Box>
-                  <Typography variant="h6">Всего перевозок</Typography>
-                  <Typography>{totalDeliveries}</Typography>
+                <Box sx={{ display: "flex", gap: 2 }}>
+
+                <Box sx={{
+                  boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.25)',
+                  borderColor: "lightgrey",
+                  borderWidth: 2,
+                  borderRadius: 12, 
+                  padding: 2,
+                  flex: .5
+                }}>
+                  <Typography variant="h6">Всего перевозок: {totalDeliveries}</Typography>
+                </Box>
+
+                <Box sx={{
+                  boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.25)',
+                  borderColor: "lightgrey",
+                  borderWidth: 2,
+                  borderRadius: 12,
+                  padding: 2,
+                  flex: 1
+                }}>
+                  <Typography variant="h6">Среднее число товаров за перевозку: {avgPerDelivery}</Typography>
+                </Box>
                 </Box>
 
                 <Box>
-                  <Typography variant="h6">Среднее число товаров за перевозку</Typography>
-                  <Typography>{avgPerDelivery}</Typography>
-                </Box>
-
-                <Box>
-
                   {chartData?.datasets && chartData.datasets.length > 0 && (
-                    <Line data={chartData} options={chartOptions} />
+                    <Line data={chartData} options={chartOptions} style={{ width: "100%" }} />
                   )}
                 </Box>
+
+                
                 <Box>
 
                   <Typography variant="h6">Статистика по водителям</Typography>
