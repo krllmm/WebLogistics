@@ -1,5 +1,5 @@
 import { Box, Button, MenuItem, Modal, Select, SelectChangeEvent, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { itemService } from "../../services/api/endpoints/item";
 
 const style = {
@@ -24,7 +24,6 @@ interface LogistProps {
   _id: string,
   super_rights: string,
   drivers: string[],
-
   freeDrivers: Driver[],
   resetPassword: () => void
 }
@@ -32,6 +31,7 @@ interface LogistProps {
 export default function LogistInfo({ login, _id, super_rights, drivers, freeDrivers, resetPassword }: LogistProps) {
   const [assignDriverModal, setAssignDriverModal] = useState<boolean>(false)
   const [driver, setDriver] = useState('');
+  const [assignedDrivers, setAssignedDrivers] = useState<{name: string, second_name: string}>()
 
   const handleDriverChange = (event: SelectChangeEvent) => {
     setDriver(event.target.value as string);
@@ -47,6 +47,24 @@ export default function LogistInfo({ login, _id, super_rights, drivers, freeDriv
     .finally(() => { window.location.reload() })
   }
   
+  const getDrivers = async () => {
+    await itemService.getAllDrivers()
+    .then(res => {
+      console.log("all:",  res)
+      console.log("needed: ", drivers)
+      const result = res.filter((item: any) => drivers.includes(item._id["$oid"]));
+      console.log("coreect: ", result)
+
+      setAssignedDrivers({name: result[0].first_name, second_name: result[0].second_name})
+    })
+    .catch()
+    .finally()
+  }
+
+  useEffect(() => {
+    getDrivers()
+  }, [])
+  
   return (
     <>
       <Box
@@ -57,7 +75,7 @@ export default function LogistInfo({ login, _id, super_rights, drivers, freeDriv
             backgroundColor: "#f9f9f9",
           }
         }}>
-        <Typography sx={{ flex: 1, marginLeft: 2, marginY: 1 }}>{login} {_id}</Typography>
+        <Typography sx={{ flex: 1, marginLeft: 2, marginY: 1 }}>{login}</Typography>
         <Box sx={{
           flex: 1,
           marginLeft: 2,
@@ -80,7 +98,7 @@ export default function LogistInfo({ login, _id, super_rights, drivers, freeDriv
           {drivers.length !== 0
             ?
             <Typography>
-              {drivers.join(", ")}
+              {assignedDrivers?.name} {assignedDrivers?.second_name}
             </Typography>
             : <Button
               onClick={() => setAssignDriverModal(true)}

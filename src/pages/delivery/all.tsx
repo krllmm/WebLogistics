@@ -78,7 +78,7 @@ export default function Delivery() {
                   >
                     {
                       (driver.delivery).length === 0 ?
-                        <Typography>Нет доставок</Typography>
+                        <Typography sx={{ fontWeight: 700, fontSize: 20 }}>Нет перевозок</Typography>
                         :
                         driver.delivery.map((delivery, index) => (
                           <DeliveryCard delivery={delivery} key={index} />

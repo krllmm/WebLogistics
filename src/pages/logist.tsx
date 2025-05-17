@@ -144,7 +144,25 @@ export default function Logist() {
       {
         addLogistSectionOpen ?
           <>
-            <Box sx={{ marginTop: 4 }}>
+            <Box sx={{ marginTop: 8, display: "flex", flexDirection: "column", gap: 2 }}>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Typography variant="h6">Добавление нового логиста</Typography>
+              <Button 
+              onClick={() => setAddLogistSectionOpen(false)}
+              sx={{
+                backgroundColor: "#8EBB8E",
+                color: "#000",
+                borderRadius: "12px",
+                textDecoration: "none",
+                textTransform: "initial",
+                marginLeft: "auto",
+                "&:hover": {
+                  backgroundColor: "#1C771C",
+                }
+              }}>Отмена</Button>
+              </Box>
+
+              <Box sx={{ height: 2, backgroundColor: "lightgrey", }}/>
               <TextField label="Имя" autoComplete="off" variant="outlined" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
               <TextField label="Фамилия" autoComplete="off" variant="outlined" value={secondName} onChange={(e) => setSecondName(e.target.value)} />
               <FormGroup>
@@ -153,7 +171,20 @@ export default function Logist() {
               </FormGroup>
 
             </Box>
-            <Button onClick={() => handleAddLogist()}>Добавить</Button>
+            <Button
+              onClick={() => handleAddLogist()}
+              sx={{
+                backgroundColor: "#8EBB8E",
+                marginTop: 2,
+                color: "#000",
+                borderRadius: "12px",
+                py: 1,
+                px: 3,
+                textDecoration: "none",
+                "&:hover": {
+                  backgroundColor: "#1C771C",
+                }
+              }}>Добавить</Button>
           </> : <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }} >
             <IconButton size="large" onClick={() => { setAddLogistSectionOpen(true) }}>
               <AddIcon fontSize="large" />
