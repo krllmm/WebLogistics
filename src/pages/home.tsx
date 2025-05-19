@@ -2,11 +2,7 @@ import { Box, CircularProgress, Typography } from "@mui/material";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import { itemService } from "../../services/api/endpoints/item";
-// import React from "react";
 import {
-  Grid,
-  Card,
-  CardContent,
   List,
   ListItem,
   ListItemText,
@@ -197,7 +193,7 @@ export default function Home() {
                   padding: 2,
                   flex: 1
                 }}>
-                  <Typography variant="h6">Среднее число товаров за перевозку: {avgPerDelivery}</Typography>
+                  <Typography variant="h6">Среднее число товаров за перевозку: {avgPerDelivery.toFixed(0)}</Typography>
                 </Box>
                 </Box>
 

@@ -31,7 +31,7 @@ interface LogistProps {
 export default function LogistInfo({ login, _id, super_rights, drivers, freeDrivers, resetPassword }: LogistProps) {
   const [assignDriverModal, setAssignDriverModal] = useState<boolean>(false)
   const [driver, setDriver] = useState('');
-  const [assignedDrivers, setAssignedDrivers] = useState<{name: string, second_name: string}>()
+  const [assignedDrivers, setAssignedDrivers] = useState<Driver[]>([])
 
   const handleDriverChange = (event: SelectChangeEvent) => {
     setDriver(event.target.value as string);
@@ -52,10 +52,10 @@ export default function LogistInfo({ login, _id, super_rights, drivers, freeDriv
     .then(res => {
       console.log("all:",  res)
       console.log("needed: ", drivers)
-      const result = res.filter((item: any) => drivers.includes(item._id["$oid"]));
+      const result = res.filter((item: any) => drivers.includes(item._id));
       console.log("coreect: ", result)
 
-      setAssignedDrivers({name: result[0].first_name, second_name: result[0].second_name})
+      setAssignedDrivers(result)
     })
     .catch()
     .finally()
@@ -97,9 +97,13 @@ export default function LogistInfo({ login, _id, super_rights, drivers, freeDriv
         }}>
           {drivers.length !== 0
             ?
-            <Typography>
-              {assignedDrivers?.name} {assignedDrivers?.second_name}
-            </Typography>
+            
+              assignedDrivers?.map((d) => (
+                <Typography>
+                  {d.first_name} {d.second_name}
+              </Typography>
+              ))
+
             : <Button
               onClick={() => setAssignDriverModal(true)}
               sx={{
