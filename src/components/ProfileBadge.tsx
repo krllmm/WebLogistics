@@ -95,6 +95,7 @@ export default function ProfileBadge() {
             value={password}
             placeholder="Пароль"
             onChange={e => setPassword(e.target.value)}
+            type="password"
             variant="outlined"
             autoComplete='off'
           />

@@ -8,7 +8,7 @@ interface DeliveryProps {
 
 export default function DeliveryCard({ delivery }: DeliveryProps) {
 
-  const date: string = new Date(delivery.date["$date"]).toLocaleString('ru-RU');
+  const date: string = new Date((delivery.date as unknown as { $date: string })["$date"]).toLocaleString('ru-RU');
 
   return (
     <>

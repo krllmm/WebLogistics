@@ -69,7 +69,7 @@ export default function Home() {
       const route = `${d.from} → ${d.to}`;
       routeCount[route] = (routeCount[route] || 0) + 1;
 
-      const dateKey = new Date(d.date["$date"]).toLocaleString('ru-RU').split("T")[0];
+      const dateKey = new Date((d.date as unknown as { $date: string })["$date"]).toLocaleDateString('ru-RU');
       deliveriesByDate[dateKey] = (deliveriesByDate[dateKey] || 0) + 1;
 
     });
@@ -204,8 +204,7 @@ export default function Home() {
                 </Box>
 
                 
-                <Box>
-
+                {/* <Box>
                   <Typography variant="h6">Статистика по водителям</Typography>
                   <List>
                     {Object.entries(driverStats).map(([name, count]) => (
@@ -214,7 +213,7 @@ export default function Home() {
                       </ListItem>
                     ))}
                   </List>
-                </Box>
+                </Box> */}
                 <Box>
                   <Typography variant="h6">Топ маршруты</Typography>
                   <List>
