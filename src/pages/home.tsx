@@ -41,7 +41,7 @@ export default function Home() {
 
   const [totalDeliveries, setTotalDeliveries] = useState(0)
   const [avgPerDelivery, setAvgPerDelivery] = useState(0)
-  const [driverStats, setDriverStats] = useState<Record<string, number>>({});
+  const [_, setDriverStats] = useState<Record<string, number>>({});
   const [topRoutes, setTopRoutes] = useState<[string, number][]>([]);
   const [chartData, setChartData] = useState<any>({});
   const [chartOptions, setChartOptions] = useState<any>({});
